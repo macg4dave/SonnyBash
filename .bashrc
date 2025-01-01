@@ -13,6 +13,13 @@ export PS1="\[\e[36;40m\]\u\[\e[m\]\[\e[35m\]@\[\e[m\][\[\e[33m\]\h\[\e[m\]]\[\e
 export CLICOLOR=1
 export LSCOLORS=ExFxBxDxCxegedabagacad
 
+# Save history immediately and prevent duplicates
+export HISTCONTROL=ignoredups
+export HISTSIZE=1000          # Number of commands to keep in memory
+export HISTFILESIZE=2000      # Number of commands to save to disk
+shopt -s histappend           # Append to history instead of overwriting
+
+
 # ----------------
 # 2. Aliases
 # ----------------
@@ -58,6 +65,35 @@ extract () {
 dirsize () {
     du -sh "$1" 2>/dev/null || echo "Invalid directory"
 }
+
+# ----------------
+# 4. Python stuff
+# ----------------
+
+# Create and activate a virtual environment
+pyenv () {
+    if [ ! -d "venv" ]; then
+        python3 -m venv venv && echo "Virtual environment 'venv' created."
+    fi
+    source venv/bin/activate
+    echo "Virtual environment 'venv' activated."
+}
+
+# Check installed packages
+pylist () {
+    pip list | less
+}
+
+# Run Python files with better error output
+pyrun () {
+    python3 -m $1 2>&1 | less
+}
+
+# Enable tab-completion for Python files and modules
+_python_complete() {
+    COMPREPLY=($(compgen -f -- "${COMP_WORDS[COMP_CWORD]}"))
+}
+complete -o default -F _python_complete python3
 
 
 
