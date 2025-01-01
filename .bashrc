@@ -24,10 +24,7 @@ shopt -s histappend           # Append to history instead of overwriting
 # 2. Aliases
 # ----------------
 # Shortcuts for common commands:
-alias ll='ls -lh'  # List files in long format with human-readable sizes.
-alias la='ls -lha' # List all files, including hidden ones.
-alias ..='cd ..'   # Move up one directory.
-alias ...='cd ../..' # Move up two directories.
+
 
 # Safety: Ask before deleting files.
 alias rm='rm -i'
