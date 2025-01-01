@@ -25,6 +25,10 @@ shopt -s histappend           # Append to history instead of overwriting
 # ----------------
 # Shortcuts for common commands:
 
+alias ls='ls --color=auto -Fhla'
+alias jdir='wget -r -c --no-parent '
+alias jd='wget -c '
+alias checkip='curl ipinfo.io'
 
 # Safety: Ask before deleting files.
 alias rm='rm -i'
